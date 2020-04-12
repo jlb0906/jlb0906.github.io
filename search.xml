@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>golang设计模式-简单工厂模式</title>
+    <url>/2020/04/12/golang%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<p>简单工厂模式可以解决单体类过于庞大的问题</p>
+<h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="/images/simple-factory.jpg" alt=""></p>
+<a id="more"></a>
+
+<h3 id="定义Chart和实现工厂方法"><a href="#定义Chart和实现工厂方法" class="headerlink" title="定义Chart和实现工厂方法"></a>定义Chart和实现工厂方法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">type Chart interface &#123;</span><br><span class="line">	Display()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func ChartFactory(t string) Chart &#123;</span><br><span class="line">	switch t &#123;</span><br><span class="line">	case &quot;histogram&quot;:</span><br><span class="line">		return NewHistogramChart()</span><br><span class="line">	case &quot;line&quot;:</span><br><span class="line">		return NewLineChart()</span><br><span class="line">	case &quot;pie&quot;:</span><br><span class="line">		return NewPieChart()</span><br><span class="line">	&#125;</span><br><span class="line">	return nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义HistogramChart"><a href="#定义HistogramChart" class="headerlink" title="定义HistogramChart"></a>定义HistogramChart</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">type HistogramChart struct &#123;&#125;</span><br><span class="line"></span><br><span class="line">func NewHistogramChart() *HistogramChart &#123;</span><br><span class="line">	fmt.Println(&quot;new NewHistogramChart&quot;)</span><br><span class="line">	return &amp;HistogramChart&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (h *HistogramChart) Display() &#123;</span><br><span class="line">	fmt.Println(&quot;display HistogramChart...&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义LineChart"><a href="#定义LineChart" class="headerlink" title="定义LineChart"></a>定义LineChart</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">type LineChart struct &#123;&#125;</span><br><span class="line"></span><br><span class="line">func NewLineChart() *LineChart &#123;</span><br><span class="line">	fmt.Println(&quot;new NewLineChart&quot;)</span><br><span class="line">	return &amp;LineChart&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (h *LineChart) Display() &#123;</span><br><span class="line">	fmt.Println(&quot;display LineChart...&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义PieChart"><a href="#定义PieChart" class="headerlink" title="定义PieChart"></a>定义PieChart</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">type PieChart struct &#123;&#125;</span><br><span class="line"></span><br><span class="line">func NewPieChart() *PieChart &#123;</span><br><span class="line">	fmt.Println(&quot;new NewPieChart&quot;)</span><br><span class="line">	return &amp;PieChart&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (h *PieChart) Display() &#123;</span><br><span class="line">	fmt.Println(&quot;display PieChart...&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="客户端调用"><a href="#客户端调用" class="headerlink" title="客户端调用"></a>客户端调用</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	c :&#x3D; ChartFactory(&quot;pie&quot;)</span><br><span class="line">	c.Display()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/simple-factory-client.PNG" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/04/12/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<a id="more"></a>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>小故事，值得一读</title>
+    <url>/2019/04/02/%E5%B0%8F%E6%95%85%E4%BA%8B%EF%BC%8C%E5%80%BC%E5%BE%97%E4%B8%80%E8%AF%BB/</url>
+    <content><![CDATA[<blockquote>
+<p>一个农民从洪水中救起了他的妻子，他的孩子却被淹死了。事后，人们议论纷纷。有的说他做得对，因为孩子可以再生一个，妻子却不能死而复活。有的说他做错了，因为妻子可以另娶一个，孩子却不能死而复活。<br>我听了人们的议论，也感到疑惑难决：如果只能救活一人，究竟应该救妻子呢，还是救孩子？ 于是我去拜访那个农民，问他当时是怎么想的。 他答道：“我什么也没想。洪水袭来，妻子在我身过，我抓住她就往附近的山坡游。 当我返回时，孩子已经被洪水冲走了。”<br>归途上，我琢磨着农民的话，对自己说：所谓人生的抉择不少便是如此。</p>
+</blockquote>
+<a id="more"></a>
+
+<h3 id="一、用人之道"><a href="#一、用人之道" class="headerlink" title="一、用人之道"></a>一、用人之道</h3><p>去过庙的人都知道，一进庙门，首先是弥陀佛，笑脸迎客，而在他的北面，则是黑口黑脸的韦陀。但相传在很久以前，他们并不在同一个庙里，而是分别掌管不同的庙。弥乐佛热情快乐，所以来的人非常多，但他什么都不在乎，丢三拉四，没有好好的管理账务，所以依然入不敷出。而韦陀虽然管账是一把好手，但成天阴着个脸，太过严肃，搞得人越来越少，最后香火断绝。<br>佛祖在查香火的时候发现了这个问题，就将他们俩放在同一个庙里，由弥乐佛负责公关，笑迎八方客，于是香火大旺。而韦陀铁面无私，锱珠必较，则让他负责财务，严格把关。在两人的分工合作中，庙里一派欣欣向荣景象。其实在用人大师的眼里，没有废人，正如武功高手，不需名贵宝剑，摘花飞叶即可伤人，关键看如何运用。
+　</p>
+<h3 id="二、鹦-鹉"><a href="#二、鹦-鹉" class="headerlink" title="二、鹦 鹉"></a>二、鹦 鹉</h3><p>一个人去买鹦鹉，看到一只鹦鹉前标：此鹦鹉会两门语言，售价二百元。 另一只鹦鹉前则标道：此鹦鹉会四门语言，售价四百元。 该买哪只呢？两只都毛色光鲜，非常灵活可爱。这人转啊转，拿不定主意。 结果突然发现一只老掉了牙的鹦鹉，毛色暗淡散乱，标价八百元。<br>这人赶紧将老板叫来：这只鹦鹉是不是会说八门语言？ 店主说：不。 这人奇怪了：那为什么又老又丑，又没有能力，会值这个数呢？ 店主回答：因为另外两只鹦鹉叫这只鹦鹉老板。<br>这故事告诉我们，真正的领导人，不一定自己能力有多强，只要懂信任，懂放权，懂珍惜，就能团结比自己更强的力量，从而提升自己的身价。<br>相反许多能力非常强的人却因为过于完美主义，事必躬亲，什么人都不如自己，最后只能做最好的攻关人员，销售代表，成不了优秀的领导人。</p>
+<h3 id="三、袋鼠与笼子"><a href="#三、袋鼠与笼子" class="headerlink" title="三、袋鼠与笼子"></a>三、袋鼠与笼子</h3><p>一天动物园管理员发现袋鼠从笼子里跑出来了，于是开会讨论，一致认为是笼子的高度过低。所以他们决定将笼子的高度由原来的10米加高到20米。结果第二天他们发现袋鼠还是跑到外面来，所以他们又决定再将高度加高到30米。<br>没想到隔天居然又看到袋鼠全跑到外面，于是管理员们大为紧张，决定一不做二不休，将笼子的高度加高到100米。一天长颈鹿和几只袋鼠们在闲聊，“你们看，这些人会不会再继续加高你们的笼子？<br>”长颈鹿问。“很难说。”袋鼠说∶“如果他们再继续忘记关门的话！”<br>管理心得：事有“本末”、“轻重”、“缓急”，关门是本，加高笼子是末，舍本而逐末，当然就不得要领了。管理是什么？管理就是先分析事情的主要矛盾和次要矛盾，认清事情的“本末”、“轻重”、“缓急”，然后从重要的方面下手。</p>
+<h3 id="四、扁鹊的医术"><a href="#四、扁鹊的医术" class="headerlink" title="四、扁鹊的医术"></a>四、扁鹊的医术</h3><p>魏文王问名医扁鹊说：“你们家兄弟三人，都精于医术，到底哪一位最好呢？”<br>扁鹊答：“长兄最好，中兄次之，我最差。”<br>文王再问：“那么为什么你最出名呢？”<br>扁鹊答：“长兄治病，是治病于病情发作之前。由于一般人不知道他事先能铲除病因，所以他的名气无法传出去；中兄治病，是治病于病情初起时。一般人以为他只能治轻微的小病，所以他的名气只及本乡里。而我是治病于病情严重之时。一般人都看到我在经脉上穿针管放血、在皮肤上敷药等大手术，所以以为我的医术高明，名气因此响遍全国。”<br>管理心得：事后控制不如事中控制，事中控制不如事前控制，可惜大多数的事业经营者均未能体会到这一点，等到错误的决策造成了重大的损失才寻求弥补。而往往是即使请来了名气很大的“空降兵”，结果于事无补。</p>
+<h3 id="五、曲突徒薪"><a href="#五、曲突徒薪" class="headerlink" title="五、曲突徒薪"></a>五、曲突徒薪</h3><p>有位客人到某人家里做客，看见主人家的灶上烟囱是直的，旁边又有很多木材。客人告诉主人说，烟囱要改曲，木材须移去，否则将来可能会有火灾，主人听了没有作任何表示。<br>不久主人家里果然失火，四周的邻居赶紧跑来救火，最后火被扑灭了，于是主人烹羊宰牛，宴请四邻，以酬谢他们救火的功劳，但并没有请当初建议他将木材移走，烟囱改曲的人。<br>有人对主人说：“如果当初听了那位先生的话，今天也不用准备筵席，而且没有火灾的损失，现在论功行赏，原先给你建议的人没有被感恩，而救火的人却是座上客，真是很奇怪的事呢！”主人顿时省悟，赶紧去邀请当初给予建议的那个客人来吃酒。管理心得：一般人认为，足以摆平或解决企业经营过程中的各种棘手问题的人，就是优秀的管理者，其实这是有待商榷的，俗话说：“预防重于治疗”，能防患于未然之前，更胜于治乱于已成之后，由此观之，企业问题的预防者，其实是优于企业问题的解决者。</p>
+<h3 id="六、救-人"><a href="#六、救-人" class="headerlink" title="六、救 人"></a>六、救 人</h3><p>在一场激烈的战斗中，上尉忽然发现一架敌机向阵地俯冲下来。照常理，发现敌机俯冲时要毫不犹豫地卧倒。可上尉并没有立刻卧倒，他发现离他四五米远处有一个小战士还站在哪儿。他顾不上多想 ，一个鱼跃飞身将小战士紧紧地压在了身下。此时一声巨响，飞溅起来的泥土纷纷落在他们的身上。上尉拍拍身上的尘土，回头一看，顿时惊呆了：刚才自己所处的那个位置被炸成了一个大坑。</p>
+<h3 id="七、出-门"><a href="#七、出-门" class="headerlink" title="七、出 门"></a>七、出 门</h3><p>古时候，有两个兄弟各自带着一只行李箱出远门。一路上，重重的行李箱将兄弟俩都压得 喘不过气来。他们只好左手累了换右手，右手累了又换左手。忽然，大哥停了下来，在路边买了一根扁担，将两个行李箱一左一右挂在扁担上。他挑起两个箱子上路，反倒觉得轻松了很多。<br>把这两个故事联系在一起也许有些牵强，但他们确实有着惊人的相似之处：故事中的小战士和弟弟是幸运的，但更加幸运的是故事中的上尉和大哥，因为他们在帮助别人的同时也帮助了自己！<br>管理心得：在我们人生的大道上，肯定会遇到许许多多的困难。但我们是不是都知道，在前进的道路上，搬开别人脚下的绊脚石，有时恰恰是为自己铺路？</p>
+<h3 id="八、鱼王的儿子"><a href="#八、鱼王的儿子" class="headerlink" title="八、鱼王的儿子"></a>八、鱼王的儿子</h3><p>有个渔人有着一流的捕鱼技术，被人们尊称为‘渔王’。然而‘渔王’年老的时候非常苦恼，因为他的三个儿子的渔技都很平庸。<br>于是个经常向人诉说心中的苦恼：“我真不明白，我捕鱼的技术这么好，我的儿子们为什么这么差？我从他们懂事起就传授捕鱼技术给他们，从最基本的东西教起，告诉他们怎样织网最容易捕捉到鱼，怎样划船最不会惊动鱼，怎样下网最容易请鱼入瓮。他们长大了，我又教他们怎样识潮汐，辨鱼汛。。。凡是我长年辛辛苦苦总结出来的经验，我都毫无保留地传授给了他们，可他们的捕鱼技术竟然赶不上技术比我差的渔民的儿子！”<br>一位路人听了他的诉说后，问：“你一直手把手地教他们吗？”<br>“是的，为了让他们得到一流的捕鱼技术，我教得很仔细很耐心。”<br>“他们一直跟随着你吗？”<br>“是的，为了让他们少走弯路，我一直让他们跟着我学。”<br>路人说：“这样说来，你的错误就很明显了。你只传授给了他们技术，却没传授给他们教训，对于才能来说，没有教训与没有经验一样，都不能使人成大器！”</p>
+]]></content>
+  </entry>
+</search>
