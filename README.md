@@ -1,4 +1,10 @@
 # jlb0906.github.io
 
-## version history
-1. start
+## Develop
+```
+git add . && git commit -m "new post" && git push origin master:blog-src
+```
+
+## Version history
+* start
+* edit readme 
