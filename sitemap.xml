@@ -2,23 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2020/04/12/golang%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>http://gocore.net/2020/04/12/golang%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</loc>
     
-    <lastmod>2020-04-13T06:48:07.700Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/04/13/hello-world/</loc>
-    
-    <lastmod>2020-04-13T06:48:07.700Z</lastmod>
+    <lastmod>2020-04-13T06:52:36.115Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/04/02/%E5%B0%8F%E6%95%85%E4%BA%8B%EF%BC%8C%E5%80%BC%E5%BE%97%E4%B8%80%E8%AF%BB/</loc>
+    <loc>http://gocore.net/2020/04/13/hello-world/</loc>
     
-    <lastmod>2020-04-13T06:48:07.700Z</lastmod>
+    <lastmod>2020-04-13T06:52:36.115Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://gocore.net/2019/04/02/%E5%B0%8F%E6%95%85%E4%BA%8B%EF%BC%8C%E5%80%BC%E5%BE%97%E4%B8%80%E8%AF%BB/</loc>
+    
+    <lastmod>2020-04-13T06:52:36.115Z</lastmod>
     
   </url>
   
