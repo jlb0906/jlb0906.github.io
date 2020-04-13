@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>golang设计模式-工厂方法模式</title>
+    <url>/2020/04/13/golang%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<p>工厂方法模式可以解决简单工厂模式中频繁修改工厂类的问题</p>
+<h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p><img src="/images/factory_method.jpg" alt=""></p>
+<a id="more"></a>
+
+<h3 id="创建Logger接口"><a href="#创建Logger接口" class="headerlink" title="创建Logger接口"></a>创建Logger接口</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">type Logger interface &#123;</span><br><span class="line">	WriteLog()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="实现FileLogger和DatabaseLogger"><a href="#实现FileLogger和DatabaseLogger" class="headerlink" title="实现FileLogger和DatabaseLogger"></a>实现FileLogger和DatabaseLogger</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">type FileLogger struct &#123;&#125;</span><br><span class="line"></span><br><span class="line">func NewFileLogger() *FileLogger &#123;</span><br><span class="line">	return &amp;FileLogger&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (f *FileLogger) WriteLog() &#123;</span><br><span class="line">	fmt.Println(&quot;i&#39;m write log to file...&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">type DatabaseLogger struct &#123;&#125;</span><br><span class="line"></span><br><span class="line">func NewDatabaseLogger() *DatabaseLogger &#123;</span><br><span class="line">	return &amp;DatabaseLogger&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (f *DatabaseLogger) WriteLog() &#123;</span><br><span class="line">	fmt.Println(&quot;i&#39;m write log to database...&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义LoggerFactory接口"><a href="#定义LoggerFactory接口" class="headerlink" title="定义LoggerFactory接口"></a>定义LoggerFactory接口</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">type LoggerFactory interface &#123;</span><br><span class="line">	CreateLogger() Logger</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="实现FileLoggerFactory和DatabaseLoggerFactory"><a href="#实现FileLoggerFactory和DatabaseLoggerFactory" class="headerlink" title="实现FileLoggerFactory和DatabaseLoggerFactory"></a>实现FileLoggerFactory和DatabaseLoggerFactory</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">type FileLoggerFactory struct&#123;&#125;</span><br><span class="line"></span><br><span class="line">func NewFileLoggerFactory() *FileLoggerFactory &#123;</span><br><span class="line">	return &amp;FileLoggerFactory&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (f *FileLoggerFactory) CreateLogger() Logger &#123;</span><br><span class="line">	fmt.Println(&quot;i&#39;m open file...&quot;)</span><br><span class="line">	return NewFileLogger()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">type DatabaseLoggerFactory struct&#123;&#125;</span><br><span class="line"></span><br><span class="line">func NewDatabaseLoggerFactory() *DatabaseLoggerFactory &#123;</span><br><span class="line">	return &amp;DatabaseLoggerFactory&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (f *DatabaseLoggerFactory) CreateLogger() Logger &#123;</span><br><span class="line">	fmt.Println(&quot;i&#39;m open database...&quot;)</span><br><span class="line">	return NewDatabaseLogger()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="客户端调用测试"><a href="#客户端调用测试" class="headerlink" title="客户端调用测试"></a>客户端调用测试</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	f :&#x3D; NewDatabaseLoggerFactory()</span><br><span class="line">	logger :&#x3D; f.CreateLogger()</span><br><span class="line">	logger.WriteLog()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/factory_method_client.PNG" alt=""></p>
+<h3 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h3><p>是否在golang中有更加轻便的实现？</p>
+]]></content>
+  </entry>
+  <entry>
     <title>golang设计模式-简单工厂模式</title>
     <url>/2020/04/12/golang%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<p>简单工厂模式可以解决单体类过于庞大的问题</p>
