@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>golang设计模式-单例模式</title>
+    <url>/2020/04/15/golang%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<p>单例模式用于系统运行时只需一个实例的时候，可节省系统开支</p>
+<h3 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h3><p>本例中实现一个饿汉式单例模式<br><img src="/images/singleton.gif" alt=""></p>
+<h3 id="以实现一个负载均衡器为例"><a href="#以实现一个负载均衡器为例" class="headerlink" title="以实现一个负载均衡器为例"></a>以实现一个负载均衡器为例</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">type LoadBalancer interface &#123;</span><br><span class="line">	AddServer(string)</span><br><span class="line">	GetServer() string</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var lb LoadBalancer</span><br><span class="line"></span><br><span class="line">type SimpleLoadBalancer struct &#123;</span><br><span class="line">	serverMap map[string]struct&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func NewSimpleLoadBalancer() *SimpleLoadBalancer &#123;</span><br><span class="line">	m :&#x3D; make(map[string]struct&#123;&#125;)</span><br><span class="line">	return &amp;SimpleLoadBalancer&#123;serverMap: m&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (s *SimpleLoadBalancer) AddServer(srv string) &#123;</span><br><span class="line">	s.serverMap[srv] &#x3D; struct&#123;&#125;&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (s *SimpleLoadBalancer) GetServer() string &#123;</span><br><span class="line">	for srv :&#x3D; range s.serverMap &#123;</span><br><span class="line">		return srv</span><br><span class="line">	&#125;</span><br><span class="line">	return &quot;&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func GetLoadBalancer() LoadBalancer &#123;</span><br><span class="line">	return lb</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func init() &#123;</span><br><span class="line">	lb &#x3D; NewSimpleLoadBalancer()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="客户端调用测试"><a href="#客户端调用测试" class="headerlink" title="客户端调用测试"></a>客户端调用测试</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	lb :&#x3D; GetLoadBalancer()</span><br><span class="line">	lb.AddServer(&quot;server 1&quot;)</span><br><span class="line">	lb.AddServer(&quot;server 2&quot;)</span><br><span class="line">	lb.AddServer(&quot;server 3&quot;)</span><br><span class="line"></span><br><span class="line">	fmt.Println(lb.GetServer())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/singleton_client.PNG" alt=""></p>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>本次实现中未考虑并发，实际运用时，需要考虑serverMap的并发访问</p>
+]]></content>
+  </entry>
+  <entry>
     <title>golang设计模式-工厂方法模式</title>
     <url>/2020/04/13/golang%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<p>工厂方法模式可以解决简单工厂模式中频繁修改工厂类的问题</p>
