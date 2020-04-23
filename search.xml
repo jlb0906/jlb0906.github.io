@@ -92,6 +92,22 @@
 ]]></content>
   </entry>
   <entry>
+    <title>golang设计模式-桥接模式</title>
+    <url>/2020/04/23/golang%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<p>桥接模式适用于类的多维度变化问题</p>
+<h3 id="类图，以照片显示类为例"><a href="#类图，以照片显示类为例" class="headerlink" title="类图，以照片显示类为例"></a>类图，以照片显示类为例</h3><p><img src="/images/bridge.gif" alt=""></p>
+<a id="more"></a>
+
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">type Image interface &#123;</span><br><span class="line">	SetImageImpl(impl ImageImpl)</span><br><span class="line">	ParseFile()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type GifImage struct &#123;</span><br><span class="line">	impl ImageImpl</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (g *GifImage) SetImageImpl(i ImageImpl) &#123;</span><br><span class="line">	g.impl &#x3D; i</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (g *GifImage) ParseFile() &#123;</span><br><span class="line">	fmt.Println(&quot;ParseFile of Gif&quot;)</span><br><span class="line">	m :&#x3D; Matrix&#123;&#125;</span><br><span class="line">	g.impl.DoPaint(m)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type PNGImage struct &#123;</span><br><span class="line">	impl ImageImpl</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (p *PNGImage) SetImageImpl(impl ImageImpl) &#123;</span><br><span class="line">	p.impl &#x3D; impl</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (p *PNGImage) ParseFile() &#123;</span><br><span class="line">	fmt.Println(&quot;ParseFile of PNG&quot;)</span><br><span class="line">	m :&#x3D; Matrix&#123;&#125;</span><br><span class="line">	p.impl.DoPaint(m)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">type Matrix struct &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type ImageImpl interface &#123;</span><br><span class="line">	DoPaint(Matrix)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type WindowsImageImpl struct &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (w *WindowsImageImpl) DoPaint(matrix Matrix) &#123;</span><br><span class="line">	fmt.Print(&quot;在Windows上显示图像&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type LinuxImageImpl struct &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func (l *LinuxImageImpl) DoPaint(m Matrix) &#123;</span><br><span class="line">	fmt.Print(&quot;在Linux上显示图像&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="客户端调用测试"><a href="#客户端调用测试" class="headerlink" title="客户端调用测试"></a>客户端调用测试</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	win :&#x3D; new(WindowsImageImpl)</span><br><span class="line">	gif :&#x3D; new(GifImage)</span><br><span class="line">	gif.SetImageImpl(win)</span><br><span class="line">	gif.ParseFile()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/bridge_client.PNG" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
     <title>golang设计模式-简单工厂模式</title>
     <url>/2020/04/12/golang%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<p>简单工厂模式可以解决单体类过于庞大的问题</p>
