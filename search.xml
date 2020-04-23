@@ -145,6 +145,13 @@
 ]]></content>
   </entry>
   <entry>
+    <title>iris解决跨域问题</title>
+    <url>/2020/04/23/iris%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>本来是参考官方的中间件跨域实现例子，但没有完全解决问题，Get请求可以跨域，Post怎么设置也不行。</p>
+<p>后面参考(copy)了bbs-go这个开源项目的跨域代码，解决了这个很细节的问题。</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; cors</span><br><span class="line">app.Use(cors.New(cors.Options&#123;</span><br><span class="line">    AllowedOrigins:   []string&#123;&quot;*&quot;&#125;, &#x2F;&#x2F; allows everything, use that to change the hosts.</span><br><span class="line">    AllowCredentials: true,</span><br><span class="line">    MaxAge:           600,</span><br><span class="line">    AllowedMethods:   []string&#123;iris.MethodGet, iris.MethodPost, iris.MethodOptions, iris.MethodHead, iris.MethodDelete, iris.MethodPut&#125;,</span><br><span class="line">    AllowedHeaders:   []string&#123;&quot;*&quot;&#125;,</span><br><span class="line">&#125;))</span><br><span class="line">app.AllowMethods(iris.MethodOptions)</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
     <title>小故事，值得一读</title>
     <url>/2019/04/02/%E5%B0%8F%E6%95%85%E4%BA%8B%EF%BC%8C%E5%80%BC%E5%BE%97%E4%B8%80%E8%AF%BB/</url>
     <content><![CDATA[<blockquote>
